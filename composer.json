@@ -10,5 +10,13 @@
       "homepage": "http://iuliann.ro",
       "role": "Developer"
     }
-  ]
+  ],
+  "require": {
+    "php": ">=7.0.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Rapture\\Adr\\": "src/"
+    }
+  }
 }
