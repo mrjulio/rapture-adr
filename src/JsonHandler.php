@@ -37,24 +37,22 @@ class JsonHandler
      */
     public static function exception($exception)
     {
-        if ($exception instanceof HttpExceptionInterface) {
-            /** @var Response $response */
-            $response = Container::instance()['response'];
-            $response->withStatus($exception->getCode());
+        /** @var Response $response */
+        $response = Container::instance()['response'];
+        $response->withStatus($exception->getCode() ?: 500);
 
-            $message = $exception->getMessage();
+        $message = $exception->getMessage();
 
-            $stream = new Stream(fopen('php://memory', 'r+'));
+        $stream = new Stream(fopen('php://memory', 'r+'));
 
-            $json = json_decode($message, true);
-            $stream->write(
-                json_encode(
-                    json_last_error() === JSON_ERROR_NONE ? $json + ['message' => ''] : ['message' => $message]
-                )
-            );
+        $json = json_decode($message, true);
+        $stream->write(
+            json_encode(
+                json_last_error() === JSON_ERROR_NONE ? $json + ['message' => ''] : ['message' => $message]
+            )
+        );
 
-            $response->withHeader('Content-type', 'application/json')->withBody($stream)->send();
-        }
+        $response->withHeader('Content-type', 'application/json')->withBody($stream)->send();
 
         error_log($exception);
     }

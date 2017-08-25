@@ -14,6 +14,18 @@ use Rapture\Http\Stream;
 class JsonResponder extends Responder
 {
     /**
+     * Pre Invoke method
+     *
+     * @param array $data Action data
+     *
+     * @return void
+     */
+    public function preInvoke(array $data)
+    {
+        // do nothing here
+    }
+
+    /**
      * __invoke
      *
      * @param array $data Action data

@@ -49,7 +49,7 @@ class Dispatcher
      */
     public function dispatch(ServerRequestInterface $request, ResponseInterface $response)
     {
-        list($statusCode, $handler, $params) = $this->router->route($request->getMethod(), $request->getUri()->getPath());
+        list($statusCode, $handler, $params) = $this->router->route($request->getMethod(), $request->getUri()->getPath()) + [0, null, []];
 
         if ($statusCode === Response::STATUS_NOT_FOUND) {
             throw new HttpNotFoundException();
