@@ -15,7 +15,7 @@ More info here: https://github.com/pmjones/adr
 ## Install
 
 ```
-composer require iuliann/rapture-adr
+composer require mrjulio/rapture-adr
 ```
 
 ## Quick start
